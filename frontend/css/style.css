@@ -1,4 +1,6 @@
-/* Section 1: Hero */
+/* ===============================
+   🌸 SECTION 1: HERO
+=============================== */
 #hero {
   position: relative;
   width: 100vw;
@@ -6,7 +8,7 @@
   overflow: hidden;
 }
 
-/* The full-screen background image */
+/* Full-screen background image */
 #hero .hero-bg {
   position: absolute;
   top: 0;
@@ -19,8 +21,7 @@
   transform-origin: center center; /* ensures zoom focuses on center */
 }
 
-
-/* Optional overlay for readability */
+/* Overlay for readability */
 #hero .overlay {
   position: absolute;
   inset: 0;
@@ -28,23 +29,21 @@
   z-index: 1;
 }
 
-
-/* Text over the image */
+/* Text over image */
 #hero .hero-text {
   position: absolute;
-  top: 85%;
-  left: 60%;
+  top: 80%; /* adjusted to 80% for better visual balance */
+  left: 50%;
   transform: translate(-50%, -80%);
   z-index: 2;
   color: #fff;
   text-align: center;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
   opacity: 0;
-  animation: fadeUpText 2.5s ease-out 0.8s forwards; /* ✨ new animation */
+  animation: fadeUpText 2.5s ease-out 0.8s forwards;
 }
 
-
-/* Headline animation (slide left → center) */
+/* Headline animations */
 .fade-slide-text {
   font-size: 2.2rem;
   font-weight: 600;
@@ -58,15 +57,10 @@
   opacity: 0;
 }
 
-/* Animations */
+/* Hero Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-@keyframes fadeInText {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideInLeft {
@@ -80,31 +74,25 @@
 }
 
 @keyframes fadeUpText {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -60%); /* starts slightly lower */
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -80%); /* ends at final position */
-  }
+  0% { opacity: 0; transform: translate(-50%, -60%); }
+  100% { opacity: 1; transform: translate(-50%, -80%); }
 }
 
-/* Zoom-in background effect */
+/* Background zoom effect */
 @keyframes zoomInSlow {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.1);
-  }
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
 }
 
 
-/* Section 2: Countdown */
+/* ===============================
+   ⏳ SECTION 2: COUNTDOWN
+=============================== */
 #countdown {
   background: linear-gradient(to bottom right, #fff8f8, #ffeaea);
   color: #5a2e2e;
+  text-align: center;
+  padding: 60px 0;
 }
 
 #countdown .date {
@@ -119,23 +107,24 @@
 }
 
 @media (min-width: 768px) {
-  #countdown .date {
-    font-size: 2.2rem;
-  }
-  #countdown #timer {
-    font-size: 1.6rem;
-  }
+  #countdown .date { font-size: 2.2rem; }
+  #countdown #timer { font-size: 1.6rem; }
 }
 
 
-/* Section 3: Romantic Message */
+/* ===============================
+   💌 SECTION 3: ROMANTIC MESSAGE
+=============================== */
 #message {
   background: linear-gradient(to top right, #fff5f5, #ffeaea);
   color: #5a2e2e;
+  text-align: center;
+  padding: 60px 20px;
 }
 
 .message-card {
   max-width: 700px;
+  margin: 0 auto;
   background: rgba(255, 255, 255, 0.9);
   border: 2px solid #f8dede;
   transition: transform 0.6s ease, box-shadow 0.6s ease;
@@ -159,31 +148,19 @@
   color: #b66b6b;
 }
 
-/* Soft fade-up animation */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-/* Section 4: Location & Maps */
+/* ===============================
+   📍 SECTION 4: LOCATION
+=============================== */
 #location {
   background: linear-gradient(180deg, #fff9f9 0%, #fff3f3 100%);
   color: #4b2b2b;
+  padding: 60px 20px;
 }
 
 .location-card {
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(219, 182, 182, 0.5);
-}
-
-.location-card p, .location-card li {
-  color: #5b3a3a;
 }
 
 .map-wrap iframe {
@@ -191,17 +168,18 @@
   border: 0;
 }
 
-/* Responsive tweaks */
 @media (max-width: 767.98px) {
-  .map-wrap iframe {
-    height: 280px;
-  }
+  .map-wrap iframe { height: 280px; }
 }
 
-/* Section 5: Timeline of the Day */
+
+/* ===============================
+   🕒 SECTION 5: TIMELINE
+=============================== */
 #timeline {
   background: linear-gradient(to top right, #fff8f8, #fbeaea);
   position: relative;
+  padding: 80px 0;
 }
 
 .timeline {
@@ -230,20 +208,15 @@
   transition: all 1s ease;
 }
 
-.timeline-item.left {
-  left: 0;
-}
-
-.timeline-item.right {
-  left: 50%;
-}
+.timeline-item.left { left: 0; }
+.timeline-item.right { left: 50%; }
 
 .timeline-content {
   background-color: #fff;
   padding: 20px 25px;
   border-radius: 10px;
   position: relative;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .timeline-content h5 {
@@ -276,11 +249,8 @@
   z-index: 1;
 }
 
-.timeline-item.right::before {
-  left: -10px;
-}
+.timeline-item.right::before { left: -10px; }
 
-/* Animation when visible */
 .timeline-item.show {
   opacity: 1;
   transform: translateY(0);
@@ -288,26 +258,13 @@
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
-  .timeline::after {
-    left: 20px;
-  }
-
-  .timeline-item {
-    width: 100%;
-    padding-left: 60px;
-    padding-right: 25px;
-  }
-
-  .timeline-item.right {
-    left: 0;
-  }
-
-  .timeline-item::before {
-    left: 10px;
-  }
+  .timeline::after { left: 20px; }
+  .timeline-item { width: 100%; padding-left: 60px; padding-right: 25px; }
+  .timeline-item.right { left: 0; }
+  .timeline-item::before { left: 10px; }
 }
 
-/* Timeline icons */
+/* Icon animation */
 .icon-wrap {
   width: 50px;
   height: 50px;
@@ -318,8 +275,8 @@
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;
-  margin: 0 auto 10px auto;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin: 0 auto 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease;
 }
 
@@ -329,10 +286,7 @@
   color: #fff;
 }
 
-/* Optional glow effect when showing */
-.timeline-item.show .icon-wrap {
-  animation: pulse 1.5s ease-out;
-}
+.timeline-item.show .icon-wrap { animation: pulse 1.5s ease-out; }
 
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0 rgba(139, 59, 59, 0.6); }
@@ -340,45 +294,40 @@
   100% { box-shadow: 0 0 0 0 rgba(139, 59, 59, 0); }
 }
 
-/* Section 6: Dress Code */
+
+/* ===============================
+   👗 SECTION 6: DRESS CODE
+=============================== */
 #dresscode {
   background: linear-gradient(to bottom right, #fff8f8, #fef2f2);
   color: #5a2e2e;
+  padding: 60px 0;
   animation: fadeUp 1.5s ease;
 }
 
-.palette {
-  margin-top: 20px;
-}
+.palette { margin-top: 20px; }
 
 .color-circle {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .color-circle:hover {
   transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-/* Section 7: RSVP */
+/* ===============================
+   💌 SECTION 7: RSVP
+=============================== */
 #rsvp {
   background: linear-gradient(to top right, #fff8f8, #f8dede);
+  padding: 80px 0;
 }
 
 #rsvp button {
@@ -386,75 +335,49 @@
   border: none;
 }
 
-#rsvp button:hover {
-  background-color: #a14f4f;
-}
+#rsvp button:hover { background-color: #a14f4f; }
 
-/* Modal custom */
-.modal-content {
-  border: 2px solid #f8dede;
-}
+.modal-content { border: 2px solid #f8dede; }
 
 .form-check-input:checked {
   background-color: #8b3b3b;
   border-color: #8b3b3b;
 }
 
-/* Section 8: Photo des Mariés */
+
+/* ===============================
+   💞 SECTION 8: COUPLE PHOTO
+=============================== */
 #couple {
   background: linear-gradient(to top right, #fff8f8, #fdeaea);
   overflow: hidden;
-  position: relative;
+  padding: 80px 0;
 }
 
 .couple-photo-wrapper {
-  position: relative;
   max-width: 600px;
   margin: 0 auto;
   border-radius: 30px;
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
   animation: fadeUp 1.5s ease;
 }
 
 .couple-photo {
   width: 100%;
-  border-radius: 0 0 0 0; /* handled by wrapper */
   transform: scale(1);
   transition: transform 0.8s ease;
 }
 
-.couple-photo:hover {
-  transform: scale(1.05);
-}
+.couple-photo:hover { transform: scale(1.05); }
 
-/* Decorative waves */
-.wave-top, .wave-bottom {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
 
-.wave-top {
-  top: -1px;
-}
-
-.wave-bottom {
-  bottom: -1px;
-  transform: rotate(180deg);
-}
-
-/* Fade animation reused from previous sections */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Section 9: Cadeaux */
+/* ===============================
+   🎁 SECTION 9: GIFTS
+=============================== */
 #gifts {
   background: linear-gradient(to bottom right, #fffdfd, #fff5f5);
+  padding: 60px 20px;
   animation: fadeUp 1.5s ease;
 }
 
@@ -466,13 +389,18 @@
 
 .gift-box:hover {
   transform: scale(1.02);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Section 10: Footer */
+
+/* ===============================
+   💖 SECTION 10: FOOTER
+=============================== */
 #footer {
   background: linear-gradient(to top right, #fef2f2, #fff8f8);
   color: #8b3b3b;
+  text-align: center;
+  padding: 40px 20px;
   font-family: 'Poppins', sans-serif;
   animation: fadeUp 1.2s ease;
 }
@@ -482,23 +410,15 @@
   font-size: 1.2rem;
 }
 
-#footer hr {
-  opacity: 0.7;
-}
+#footer hr { opacity: 0.7; }
 
-#footer p {
-  margin: 0;
-  position: relative;
-  overflow: hidden;
-}
+#footer p { margin: 0; }
 
 
-/* Responsive font sizes */
+/* ===============================
+   📱 RESPONSIVE TEXT
+=============================== */
 @media (min-width: 576px) {
-  .fade-slide-text {
-    font-size: 3rem;
-  }
-  .fade-slide-sub {
-    font-size: 1.8rem;
-  }
+  .fade-slide-text { font-size: 3rem; }
+  .fade-slide-sub { font-size: 1.8rem; }
 }

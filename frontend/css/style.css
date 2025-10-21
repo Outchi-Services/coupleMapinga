@@ -340,6 +340,42 @@
   100% { box-shadow: 0 0 0 0 rgba(139, 59, 59, 0); }
 }
 
+/* Section 6: Dress Code */
+#dresscode {
+  background: linear-gradient(to bottom right, #fff8f8, #fef2f2);
+  color: #5a2e2e;
+  animation: fadeUp 1.5s ease;
+}
+
+.palette {
+  margin-top: 20px;
+}
+
+.color-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.color-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* Responsive font sizes */
 @media (min-width: 576px) {

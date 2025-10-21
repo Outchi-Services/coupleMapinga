@@ -128,6 +128,49 @@
 }
 
 
+/* Section 3: Romantic Message */
+#message {
+  background: linear-gradient(to top right, #fff5f5, #ffeaea);
+  color: #5a2e2e;
+}
+
+.message-card {
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #f8dede;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+.message-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.romantic-text {
+  font-style: italic;
+  line-height: 1.7;
+  color: #704747;
+  animation: fadeUp 2s ease-in-out;
+}
+
+.signature {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
+  color: #b66b6b;
+}
+
+/* Soft fade-up animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 
 /* Responsive font sizes */

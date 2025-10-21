@@ -376,6 +376,30 @@
   }
 }
 
+/* Section 7: RSVP */
+#rsvp {
+  background: linear-gradient(to top right, #fff8f8, #f8dede);
+}
+
+#rsvp button {
+  background-color: #8b3b3b;
+  border: none;
+}
+
+#rsvp button:hover {
+  background-color: #a14f4f;
+}
+
+/* Modal custom */
+.modal-content {
+  border: 2px solid #f8dede;
+}
+
+.form-check-input:checked {
+  background-color: #8b3b3b;
+  border-color: #8b3b3b;
+}
+
 
 /* Responsive font sizes */
 @media (min-width: 576px) {

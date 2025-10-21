@@ -45,12 +45,27 @@
         <br>
         Votre présence illuminera notre union et rendra ce jour encore plus précieux.  
         <br>
-        Venez partager avec nous la beauté d’un « oui » sincère, symbole d’un amour éternel.
+        Venez partager avec nous la beauté d’un « oui » sincère, symbole d’un amour éternel.<br/> Table: Pierre de Lune.
       </p>
       <p class="signature">Avec tout notre amour,<br><strong>Monica &amp; Christ</strong></p>
     </div>
   </div>
 </section>
+
+<!-- Section: RSVP & Guest Book -->
+<section id="rsvp" class="py-5 text-center">
+  <div class="container">
+    <h2 class="fw-bold mb-4" style="color:#8b3b3b;">Confirmez votre présence</h2>
+    <p class="lead text-muted mb-4">
+      Votre présence rendra notre journée encore plus belle 💖  
+      Cliquez ci-dessous pour nous confirmer votre venue et nous laisser un mot.
+    </p>
+    <button class="btn btn-primary btn-lg rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#rsvpModal">
+      Je serai là 🎉
+    </button>
+  </div>
+</section>
+
 
 <!-- Section 4: Lieu, Référence, Heure & Maps -->
 <section id="location" class="py-5">
@@ -178,11 +193,64 @@
   </div>
 </section>
 
+<!-- RSVP Modal -->
+<div class="modal fade" id="rsvpModal" tabindex="-1" aria-labelledby="rsvpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow-lg">
+      <div class="modal-header" style="background:#f8dede;">
+        <h5 class="modal-title fw-bold" id="rsvpModalLabel" style="color:#8b3b3b;">Confirmez votre présence</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <form id="rsvpForm">
+          <!-- Nom complet -->
+          <div class="mb-3 text-start">
+            <label for="guestName" class="form-label">Nom complet</label>
+            <input type="text" class="form-control" id="guestName" placeholder="Entrez votre nom complet" required>
+          </div>
 
+          <!-- Choix de boisson -->
+          <div class="mb-3 text-start">
+            <label class="form-label">Choix de boisson</label><br>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Boissons sucrées (Coca, Fanta, Jus...)" id="boissonsSucrees">
+              <label class="form-check-label" for="boissonsSucrees">Boissons sucrées (Coca, Fanta, Jus...)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Primus" id="primus">
+              <label class="form-check-label" for="primus">Primus</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Turbo King" id="turboKing">
+              <label class="form-check-label" for="turboKing">Turbo King</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Skol" id="skol">
+              <label class="form-check-label" for="skol">Skol</label>
+            </div>
+          </div>
 
+          <!-- WhatsApp -->
+          <div class="mb-3 text-start">
+            <label for="whatsapp" class="form-label">Numéro WhatsApp</label>
+            <input type="tel" class="form-control" id="whatsapp" placeholder="+243..." required>
+          </div>
 
+          <!-- Message aux mariés -->
+          <div class="mb-3 text-start">
+            <label for="message" class="form-label">Message pour les mariés 💌</label>
+            <textarea class="form-control" id="message" rows="3" placeholder="Laissez un mot d’amour ou un vœu..." required></textarea>
+          </div>
 
-
+          <!-- Submit -->
+          <div class="text-center">
+            <button type="submit" class="btn btn-success px-4">Envoyer 💚</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/main.js"></script>
 </body>

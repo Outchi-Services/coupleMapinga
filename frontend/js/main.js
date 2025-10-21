@@ -48,3 +48,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener('scroll', revealTimeline);
   window.addEventListener('load', revealTimeline);
+
+  document.getElementById('rsvpForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('guestName').value;
+    const whatsapp = document.getElementById('whatsapp').value;
+    const message = document.getElementById('message').value;
+
+    // Collect selected drinks
+    const drinks = [];
+    document.querySelectorAll('input[type=checkbox]:checked').forEach(el => drinks.push(el.value));
+
+    // For now, just show confirmation (later, we’ll connect to backend & DB)
+    alert(`Merci ${name} ❤️\nVotre réservation a été enregistrée.\nBoissons: ${drinks.join(', ') || 'aucune'}\nMessage: ${message}`);
+
+    // Optionally reset form
+    e.target.reset();
+
+    // Close modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById('rsvpModal'));
+    modal.hide();
+  });

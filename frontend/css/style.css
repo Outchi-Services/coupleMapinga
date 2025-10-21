@@ -198,6 +198,147 @@
   }
 }
 
+/* Section 5: Timeline of the Day */
+#timeline {
+  background: linear-gradient(to top right, #fff8f8, #fbeaea);
+  position: relative;
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  background-color: #d4a5a5;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+}
+
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.timeline-item.left {
+  left: 0;
+}
+
+.timeline-item.right {
+  left: 50%;
+}
+
+.timeline-content {
+  background-color: #fff;
+  padding: 20px 25px;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.timeline-content h5 {
+  color: #a14f4f;
+  font-weight: bold;
+}
+
+.timeline-content h4 {
+  color: #5a2e2e;
+  margin-top: 5px;
+}
+
+.timeline-content p {
+  color: #6e4e4e;
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+/* Dots */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: -10px;
+  background-color: #fff;
+  border: 4px solid #d4a5a5;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-item.right::before {
+  left: -10px;
+}
+
+/* Animation when visible */
+.timeline-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .timeline::after {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 60px;
+    padding-right: 25px;
+  }
+
+  .timeline-item.right {
+    left: 0;
+  }
+
+  .timeline-item::before {
+    left: 10px;
+  }
+}
+
+/* Timeline icons */
+.icon-wrap {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #f7dede;
+  color: #8b3b3b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin: 0 auto 10px auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.4s ease;
+}
+
+.icon-wrap:hover {
+  transform: scale(1.15);
+  background: #8b3b3b;
+  color: #fff;
+}
+
+/* Optional glow effect when showing */
+.timeline-item.show .icon-wrap {
+  animation: pulse 1.5s ease-out;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(139, 59, 59, 0.6); }
+  70% { box-shadow: 0 0 0 15px rgba(139, 59, 59, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(139, 59, 59, 0); }
+}
 
 
 /* Responsive font sizes */

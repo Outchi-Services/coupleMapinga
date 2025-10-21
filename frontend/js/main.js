@@ -34,3 +34,17 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCountdown();
   const interval = setInterval(updateCountdown, 1000);
 });
+
+ // Reveal timeline items when in viewport
+  const items = document.querySelectorAll('.timeline-item');
+
+  const revealTimeline = () => {
+    const triggerBottom = window.innerHeight * 0.85;
+    items.forEach(item => {
+      const top = item.getBoundingClientRect().top;
+      if (top < triggerBottom) item.classList.add('show');
+    });
+  };
+
+  window.addEventListener('scroll', revealTimeline);
+  window.addEventListener('load', revealTimeline);

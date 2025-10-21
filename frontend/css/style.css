@@ -171,6 +171,33 @@
   }
 }
 
+/* Section 4: Location & Maps */
+#location {
+  background: linear-gradient(180deg, #fff9f9 0%, #fff3f3 100%);
+  color: #4b2b2b;
+}
+
+.location-card {
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(219, 182, 182, 0.5);
+}
+
+.location-card p, .location-card li {
+  color: #5b3a3a;
+}
+
+.map-wrap iframe {
+  min-height: 260px;
+  border: 0;
+}
+
+/* Responsive tweaks */
+@media (max-width: 767.98px) {
+  .map-wrap iframe {
+    height: 280px;
+  }
+}
+
 
 
 /* Responsive font sizes */

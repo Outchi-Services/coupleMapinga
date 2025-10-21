@@ -400,6 +400,98 @@
   border-color: #8b3b3b;
 }
 
+/* Section 8: Photo des Mariés */
+#couple {
+  background: linear-gradient(to top right, #fff8f8, #fdeaea);
+  overflow: hidden;
+  position: relative;
+}
+
+.couple-photo-wrapper {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  animation: fadeUp 1.5s ease;
+}
+
+.couple-photo {
+  width: 100%;
+  border-radius: 0 0 0 0; /* handled by wrapper */
+  transform: scale(1);
+  transition: transform 0.8s ease;
+}
+
+.couple-photo:hover {
+  transform: scale(1.05);
+}
+
+/* Decorative waves */
+.wave-top, .wave-bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-top {
+  top: -1px;
+}
+
+.wave-bottom {
+  bottom: -1px;
+  transform: rotate(180deg);
+}
+
+/* Fade animation reused from previous sections */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section 9: Cadeaux */
+#gifts {
+  background: linear-gradient(to bottom right, #fffdfd, #fff5f5);
+  animation: fadeUp 1.5s ease;
+}
+
+.gift-box {
+  background: #fff;
+  border: 1px solid #f2dede;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gift-box:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Section 10: Footer */
+#footer {
+  background: linear-gradient(to top right, #fef2f2, #fff8f8);
+  color: #8b3b3b;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeUp 1.2s ease;
+}
+
+#footer strong {
+  color: #8b3b3b;
+  font-size: 1.2rem;
+}
+
+#footer hr {
+  opacity: 0.7;
+}
+
+#footer p {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
 
 /* Responsive font sizes */
 @media (min-width: 576px) {

@@ -1,22 +1,17 @@
-// src/config/database.js
-require('dotenv').config();
-const { Pool } = require('pg');
+import pkg from 'pg';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const pool = new Pool({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 5432,
+const { Pool } = pkg;
+
+export const pool = new Pool({
   user: process.env.DB_USER,
-  password: process.env.DB_PASS,
+  host: process.env.DB_HOST,
   database: process.env.DB_NAME,
-  // ssl: { rejectUnauthorized: false } // uncomment if your DB requires SSL
+  password: process.env.DB_PASS || '',
+  port: process.env.DB_PORT || 5432,
 });
 
-pool.on('error', (err) => {
-  console.error('Unexpected error on idle PostgreSQL client', err);
-  process.exit(-1);
-});
-
-module.exports = {
-  query: (text, params) => pool.query(text, params),
-  pool
-};
+pool.connect()
+  .then(() => console.log("✅ Connected to PostgreSQL"))
+  .catch(err => console.error("❌ DB connection error", err));

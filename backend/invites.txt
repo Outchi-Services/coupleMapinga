@@ -1,0 +1,4 @@
+Papa Jacques: http://localhost:3000/coupleMapinga/frontend/?code=papajacques
+Maman Marie: http://localhost:3000/coupleMapinga/frontend/?code=mamanmarie
+Oncle Robert: http://localhost:3000/coupleMapinga/frontend/?code=onclerobert
+Tante Alice: http://localhost:3000/coupleMapinga/frontend/?code=tantealice

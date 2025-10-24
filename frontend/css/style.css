@@ -1,12 +1,43 @@
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
 /* ===============================
    🌸 SECTION 1: HERO
 =============================== */
+/* HERO SECTION */
 #hero {
   position: relative;
   width: 100vw;
   height: 100vh;
+  background: url('asset/invit10.jpg') no-repeat center center;
+  background-size: cover;
   overflow: hidden;
 }
+
+/* 🖥️ Desktop: show more of the top to keep heads visible */
+@media (min-width: 992px) {
+  #hero {
+    background-position: center top;
+  }
+}
+
+/* 📱 Tablets: balance top and center */
+@media (min-width: 768px) and (max-width: 991px) {
+  #hero {
+    background-position: center 20%;
+  }
+}
+
+/* 📱 Mobiles: keep centered */
+@media (max-width: 767px) {
+  #hero {
+    background-position: center center;
+  }
+}
+
 
 /* Full-screen background image */
 #hero .hero-bg {

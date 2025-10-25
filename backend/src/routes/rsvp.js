@@ -59,7 +59,7 @@ router.post("/", async (req, res) => {
     res.json({
       success: true,
       message: "RSVP enregistré avec succès !",
-      qr_download: `http://localhost:4000/qrcodes/${invitation_code}.png`,
+      qr_download: `http://localhost:4000/coupleMapinga/backend/qrcodes/${invitation_code}.png`,
     });
 
   } catch (err) {

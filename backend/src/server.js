@@ -54,7 +54,7 @@ app.post("/api/rsvp", async (req, res) => {
 
     // Use invitation_code as filename
     const qrPath = path.join(qrDir, `${invitation_code}.png`);
-    const qrUrl = `${process.env.FRONTEND_URL || "http://localhost:3000"}/index.html?code=${invitation_code}`;
+    const qrUrl = `${process.env.FRONTEND_URL || "http://localhost:3000"}/qr.html?code=${invitation_code}`;
 
     await QRCode.toFile(qrPath, qrUrl, { width: 300 });
 
@@ -108,6 +108,35 @@ app.get("/invite/:code", async (req, res) => {
   } catch (err) {
     console.error("Invite fetch error:", err);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+//qr code scan page
+app.get("/qr-info/:code", async (req, res) => {
+  try {
+    const { code } = req.params;
+
+    const result = await pool.query(`
+      SELECT g.fullname AS full_name, g.table_number, r.drink_choice
+      FROM guest_pro g
+      LEFT JOIN rsvp_responses r ON g.id = r.guest_id
+      WHERE g.invitation_code = $1
+    `, [code]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ success: false, error: "Invitation introuvable" });
+    }
+
+    const guest = result.rows[0];
+    res.json({
+      success: true,
+      full_name: guest.full_name,
+      table_number: guest.table_number,
+      drink_choice: guest.drink_choice
+    });
+  } catch (err) {
+    console.error("QR info fetch error:", err);
+    res.status(500).json({ success: false, error: "Erreur serveur" });
   }
 });
 

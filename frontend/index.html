@@ -269,6 +269,7 @@
             <div class="mb-3 text-start">
               <label for="guestName" class="form-label">Nom complet</label>
               <input type="text" class="form-control" id="guestName" placeholder="Entrez votre nom complet" required />
+              <input type="hidden" id="tableNumber" name="tableNumber" />
             </div>
 
             <div class="mb-3 text-start">
@@ -309,6 +310,22 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="qrModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title">Votre QR Code 🎉</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img id="qrImage" src="" alt="QR Code" class="img-fluid mb-3">
+        <a id="downloadQR" href="" download="qr_code.png" class="btn btn-primary">Télécharger le QR</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <!-- Section 10: Footer -->
   <footer id="footer" class="text-center py-4 position-relative overflow-hidden">

@@ -1,0 +1,41 @@
+body {
+  background: linear-gradient(135deg, #fff5f5, #ffecec);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  color: #4a2c2a;
+  margin: 0;
+}
+
+.card {
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  background: white;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  padding: 2rem;
+}
+
+.names {
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: #8b3b3b;
+}
+
+.guest {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+}
+
+.drink,
+.table {
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.text-danger {
+  color: #a94442 !important;
+}

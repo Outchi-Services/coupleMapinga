@@ -38,6 +38,13 @@ router.post("/", async (req, res) => {
     if (!fs.existsSync(qrDir)) fs.mkdirSync(qrDir);
     const qrPath = path.join(qrDir, `${invitation_code}.png`);
     await QRCode.toFile(qrPath, redirectUrl, { width: 300 });
+    
+    // Insert QR info into qr_codes table
+    await pool.query(
+    `INSERT INTO qr_codes (guest_id, qr_image_path, qr_redirect_url, created_at)
+    VALUES ($1, $2, $3, NOW())`,
+    [guest.id, qrPath, redirectUrl]
+    );
 
     // 4️⃣ Ajouter dans rsvp_responses
     // Si besoin de créer un guest_id, on pourrait d'abord insérer dans guests ou guest_pro et récupérer id

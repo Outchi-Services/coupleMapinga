@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (invitation_code) {
     try {
-      const res = await fetch(`http://localhost:4000/invite/${invitation_code}`);
+      const res = await fetch(`https://couplemapinga.onrender.com/invite/${invitation_code}`);
       console.log("Fetch /invite response status:", res.status);
       
       const data = await res.json();
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       try {
-        const response = await fetch("http://localhost:4000/api/rsvp", {
+        const response = await fetch("https://couplemapinga.onrender.com/api/rsvp", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

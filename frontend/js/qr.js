@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    const res = await fetch(`http://localhost:4000/qr-info/${invitation_code}`);
+    const res = await fetch(`https://couplemapinga.onrender.com/qr-info/${invitation_code}`);//changed from localhost 4000
     const data = await res.json();
 
     if (res.ok && data.success) {

@@ -1,4 +1,10 @@
-Papa Jacques: http://localhost:3000/coupleMapinga/frontend/?code=papajacques
-Maman Marie: http://localhost:3000/coupleMapinga/frontend/?code=mamanmarie
-Oncle Robert: http://localhost:3000/coupleMapinga/frontend/?code=onclerobert
-Tante Alice: http://localhost:3000/coupleMapinga/frontend/?code=tantealice
+Jean Pierre Mbala: http://localhost:3000/coupleMapinga/frontend/?code=jean_pierre_mbala
+Marie Louise Tshibanda: http://localhost:3000/coupleMapinga/frontend/?code=marie_louise_tshibanda
+Papa Patrick Kalala: http://localhost:3000/coupleMapinga/frontend/?code=papa_patrick_kalala
+Sandrine Mukendi: http://localhost:3000/coupleMapinga/frontend/?code=sandrine_mukendi
+François Lumumba: http://localhost:3000/coupleMapinga/frontend/?code=francois_lumumba
+Maman Chantal Ilunga: http://localhost:3000/coupleMapinga/frontend/?code=maman_chantal_ilunga
+Josephine Kabasele: http://localhost:3000/coupleMapinga/frontend/?code=josephine_kabasele
+Aimé Bakongo: http://localhost:3000/coupleMapinga/frontend/?code=aime_bakongo
+Oncle Didier Mputu: http://localhost:3000/coupleMapinga/frontend/?code=oncle_didier_mputu
+Claudine Mulumba: http://localhost:3000/coupleMapinga/frontend/?code=claudine_mulumba

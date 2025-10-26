@@ -17,9 +17,21 @@
 //   .catch(err => console.error("❌ DB connection error", err));
 
 
-import postgres from 'postgres'
+// import postgres from 'postgres'
 
-const connectionString = process.env.DATABASE_URL
-const sql = postgres(connectionString)
+// const connectionString = process.env.DATABASE_URL
+// const sql = postgres(connectionString)
 
-export default sql
+// export default sql
+
+// config/database.js
+import pkg from "pg";
+const { Pool } = pkg;
+
+// Create a new connection pool
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }, // required by Supabase
+});
+
+export { pool };

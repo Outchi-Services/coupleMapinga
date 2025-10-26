@@ -64,12 +64,21 @@ router.post("/", async (req, res) => {
       } else {
         // if QR record missing, recreate and insert
         await QRCode.toFile(qrPath, redirectUrl, { width: 300 });
-        await pool.query(
-          `INSERT INTO qr_codes (guest_id, qr_image_path, qr_redirect_url, created_at)
-           VALUES ($1, $2, $3, NOW())`,
-          [guest.id, qrPath, redirectUrl]
-        );
-        console.log(`QR ajouté pour ${invitation_code}`);
+        try {
+          await pool.query(
+            `INSERT INTO qr_codes (guest_id, qr_image_path, qr_redirect_url, created_at)
+            VALUES ($1, $2, $3, NOW())
+            ON CONFLICT (guest_id)
+            DO UPDATE SET qr_image_path = EXCLUDED.qr_image_path,
+                          qr_redirect_url = EXCLUDED.qr_redirect_url,
+                          created_at = NOW()`,
+            [guest.id, qrPath, redirectUrl]
+          );
+          console.log("QR saved to DB ✅", guest.id);
+        } catch (err) {
+          console.error("Failed to save QR to DB ❌", err);
+        }
+
       }
 
       return res.json({

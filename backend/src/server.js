@@ -88,7 +88,7 @@ app.post("/api/rsvp", async (req, res) => {
       success: true,
       guest_name: guest.full_name,
       table_name: guest.table_number,
-      qr_download: `${BACKEND_URL}/qrcodes/${invitation_code}.png`
+      qr_download: `${BACKEND_URL}/download/${invitation_code}.png`
     });
 
   } catch (err) {
@@ -153,6 +153,25 @@ app.get("/qr-info/:code", async (req, res) => {
     console.error("QR info fetch error:", err);
     res.status(500).json({ success: false, error: "Erreur serveur" });
   }
+});
+
+// ================================
+// qr code download
+// ================================
+app.get("/download/:filename", (req, res) => {
+  const file = path.resolve(`qrcodes/${req.params.filename}`);
+
+  // Vérifie si le fichier existe
+  if (!fs.existsSync(file)) {
+    return res.status(404).send("Fichier introuvable");
+  }
+
+  res.download(file, req.params.filename, (err) => {
+    if (err) {
+      console.error("Erreur lors du téléchargement:", err);
+      res.status(500).send("Erreur serveur");
+    }
+  });
 });
 
 // ================================

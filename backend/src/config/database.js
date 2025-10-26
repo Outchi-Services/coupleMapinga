@@ -31,7 +31,8 @@ const { Pool } = pkg;
 // Create a new connection pool
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }, // required by Supabase
+  // ssl: { rejectUnauthorized: false }, // required by Supabase
 });
 
 export { pool };
+

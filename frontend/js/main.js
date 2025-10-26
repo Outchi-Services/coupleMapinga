@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   console.log("Wedding site loaded — all sections initialized.");
 
-  /* =============================== Countdown =============================== */
+  /* =============================== Countdown (unchanged) =============================== */
   const timerEl = document.getElementById("timer");
   if (timerEl) {
     const weddingDate = new Date("2025-11-22T00:00:00").getTime();
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const interval = setInterval(updateCountdown, 1000);
   }
 
-  /* =============================== Load guest info =============================== */
+  /* =============================== Load personalized guest info =============================== */
   const urlParams = new URLSearchParams(window.location.search);
   const invitation_code = urlParams.get("code"); 
   console.log("Invitation code from URL:", invitation_code);
@@ -32,25 +32,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       const res = await fetch(`https://couplemapinga.onrender.com/invite/${invitation_code}`);
       console.log("Fetch /invite response status:", res.status);
-
+      
       const data = await res.json();
       console.log("Data received from /invite:", data);
 
-      const guestNameInput = document.getElementById("guestName");
-      const tableInput = document.getElementById("tableNumber"); // hidden field
-      const personalMsg = document.getElementById("personalMessage");
-
       if (data.full_name) {
+        const personalMsg = document.getElementById("personalMessage");
         if (personalMsg) {
           personalMsg.innerHTML = `C’est avec une immense joie que nous vous adressons cette invitation, <br>
                                    <strong>Cher(e) ${data.full_name}</strong>.<br>
                                    Votre table : ${data.table_number || "inconnu"}`;
+          console.log("Personal message updated successfully");
         }
+
+        const guestNameInput = document.getElementById("guestName");
+        const tableInput = document.getElementById("tableNumber"); // hidden field
         if (guestNameInput) {
           guestNameInput.value = data.full_name;
           guestNameInput.readOnly = true;
+          console.log("Guest name input prefilled:", data.full_name);
         }
-        if (tableInput) tableInput.value = data.table_number || "inconnu";
+        if (tableInput) {
+          tableInput.value = data.table_number || "inconnu";
+          console.log("Table input prefilled:", data.table_number);
+        }
+      } else {
+        console.warn("No full_name received from /invite endpoint");
       }
     } catch (err) {
       console.error("Erreur fetch invite:", err);
@@ -59,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.warn("No invitation_code found in URL");
   }
 
-  /* =============================== RSVP Form =============================== */
+  /* =============================== RSVP Form Submission =============================== */
   const rsvpForm = document.getElementById("rsvpForm");
   if (rsvpForm) {
     rsvpForm.addEventListener("submit", async (e) => {
@@ -70,17 +77,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       const drinks = [];
       document.querySelectorAll('input[type=radio]:checked').forEach(el => drinks.push(el.value));
 
-      if (!whatsapp_number) {
-        alert("Veuillez remplir votre numéro WhatsApp.");
-        return;
-      }
-
       console.log("RSVP form submission data:", {
         invitation_code,
         whatsapp_number,
         drink_choice: drinks.join(", "),
         guestbook_message
       });
+
+      if (!whatsapp_number) {
+        alert("Veuillez remplir votre numéro WhatsApp.");
+        return;
+      }
 
       try {
         const response = await fetch("https://couplemapinga.onrender.com/api/rsvp", {
@@ -94,34 +101,29 @@ document.addEventListener("DOMContentLoaded", async () => {
           })
         });
 
+        console.log("RSVP POST response status:", response.status);
+
         const data = await response.json();
         console.log("RSVP POST response data:", data);
 
         if (data.success) {
-          // Update table_number if it changed
-          const tableInput = document.getElementById("tableNumber");
-          if (tableInput) tableInput.value = data.table_number || "inconnu";
-
-          alert(`✅ Merci ${data.guest_name} !\nVotre RSVP a été enregistré.\nTéléchargez votre QR ici : ${data.qr_download}`);
-
-          // Fill QR modal
-          const qrImage = document.getElementById("qrImage");
-          const downloadLink = document.getElementById("downloadQR");
-          if (qrImage) qrImage.src = data.qr_download;
-          if (downloadLink) downloadLink.href = data.qr_download;
-
-          // Show modal
-          const qrModal = new bootstrap.Modal(document.getElementById("qrModal"));
-          qrModal.show();
-
+          alert(`✅ Merci ${data.guest_name} !\nVotre RSVP a été enregistré.\nTéléchargez votre QR ici : ${data.qr_download || "N/A"}`);
           rsvpForm.reset();
           const modal = bootstrap.Modal.getInstance(document.getElementById("rsvpModal"));
           if(modal) modal.hide();
-
         } else {
           console.error("RSVP submission error:", data.error);
           alert(`❌ Erreur : ${data.error}`);
         }
+              // Fill QR modal
+        const qrImage = document.getElementById("qrImage");
+        const downloadLink = document.getElementById("downloadQR");
+        qrImage.src = data.qr_download;   // URL to QR image
+        downloadLink.href = data.qr_download;
+
+        // Show modal
+        const qrModal = new bootstrap.Modal(document.getElementById("qrModal"));
+        qrModal.show();
       } catch (err) {
         console.error("RSVP submission failed:", err);
         alert("Une erreur est survenue. Veuillez réessayer plus tard.");

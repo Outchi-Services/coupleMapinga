@@ -69,7 +69,8 @@ app.post("/api/rsvp", async (req, res) => {
 
     const qrPath = path.join(qrDir, `${invitation_code}.png`);
     // URL that QR redirects to → hosted frontend
-    const qrUrl = `${FRONTEND_URL}/?code=${invitation_code}`;
+    // const qrUrl = `${FRONTEND_URL}/?code=${invitation_code}`;
+    const qrUrl = `${FRONTEND_URL}/qr.html?code=${invitation_code}`;
 
     await QRCode.toFile(qrPath, qrUrl, { width: 300 });
 

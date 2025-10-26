@@ -30,12 +30,61 @@ html, body {
   }
 }
 
-/* 📱 Mobiles: keep centered */
+/* 📱 Mobiles: keep centered
 @media (max-width: 767px) {
   #hero {
     background-position: center center;
   }
+} */
+
+/* MOBILE HERO ADJUSTMENTS */
+@media (max-width: 767px) {
+  #hero {
+    height: 100vh; /* full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centers content vertically */
+    align-items: center;
+    position: relative;
+  }
+
+  /* Ensure images fill the hero height */
+  #hero .row {
+    width: 100%;
+    height: 100%;
+  }
+
+  #hero .col-4, 
+  #hero .col-3, 
+  #hero .col-md-3, 
+  #hero .col-md-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #hero img.img-fluid {
+    height: 100vh; /* full screen height */
+    object-fit: cover;
+    width: auto; /* maintain aspect ratio */
+  }
+
+  /* Hero text */
+  #hero .hero-text {
+    top: 50%; /* vertically center */
+    transform: translate(-50%, -50%);
+    padding: 0 1rem; /* small padding on sides */
+  }
+
+  .fade-slide-text {
+    font-size: 1.8rem;
+  }
+
+  .fade-slide-sub {
+    font-size: 1.1rem;
+  }
 }
+
 
 /* Full-screen background image */
 #hero .hero-bg {

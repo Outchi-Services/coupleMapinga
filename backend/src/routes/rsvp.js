@@ -6,92 +6,82 @@ import path from "path";
 
 const router = express.Router();
 
-const FRONTEND_URL = "https://couplemapinga.netlify.app";
-const BACKEND_URL = "https://couplemapinga.onrender.com";
+const FRONTEND_URL = process.env.FRONTEND_URL || "https://couplemapinga.netlify.app";
+const BACKEND_URL = process.env.BACKEND_URL || "https://couplemapinga.onrender.com";
 
 router.post("/", async (req, res) => {
   try {
-    let { full_name, whatsapp_number, drink_choice, guestbook_message } = req.body;
+    const { invitation_code, whatsapp_number, drink_choice, guestbook_message } = req.body;
 
-    if (!full_name || !whatsapp_number)
-      return res.status(400).json({ error: "Nom et WhatsApp requis" });
+    if (!invitation_code || !whatsapp_number)
+      return res.status(400).json({ error: "Code invitation et WhatsApp requis" });
 
-    //1. Find guest
+    // 1️⃣ Chercher l'invité
     const guestRes = await pool.query(
-      "SELECT id, table_number, invitation_code FROM guest_pro WHERE full_name = $1",
-      [full_name]
+      "SELECT id, full_name, table_number FROM guest_pro WHERE invitation_code = $1",
+      [invitation_code]
     );
 
     if (guestRes.rows.length === 0)
       return res.status(404).json({ error: "Invité non trouvé" });
 
     const guest = guestRes.rows[0];
-    const invitation_code =
-      guest.invitation_code || full_name.replace(/\s+/g, "").toLowerCase();
+
+    // 2️⃣ Vérifier si RSVP déjà soumis
+    const rsvpRes = await pool.query(
+      "SELECT id FROM rsvp_responses WHERE guest_id = $1 OR whatsapp_number = $2",
+      [guest.id, whatsapp_number]
+    );
 
     const qrDir = path.resolve("qrcodes");
     if (!fs.existsSync(qrDir)) fs.mkdirSync(qrDir);
 
     const qrFileName = `${invitation_code}.png`;
     const qrPath = path.join(qrDir, qrFileName);
-    const redirectUrl = `${FRONTEND_URL}/qr.html?code=${invitation_code}`;
+    const qrUrl = `${FRONTEND_URL}/qr.html?code=${invitation_code}`;
 
-    // 2. Check existing RSVP
-    const existingRSVP = await pool.query(
-      "SELECT id FROM rsvp_responses WHERE guest_id = $1 OR whatsapp_number = $2",
-      [guest.id, whatsapp_number]
-    );
-
-    // 3. Check if QR entry already exists
-    const existingQR = await pool.query(
+    // 3️⃣ Vérifier si QR existe dans la DB
+    const qrDB = await pool.query(
       "SELECT id, qr_image_path FROM qr_codes WHERE guest_id = $1",
       [guest.id]
     );
 
-    // Case 1: Guest already RSVP’d
-    if (existingRSVP.rows.length > 0) {
-      // if QR record exists but file missing, regenerate
-      if (existingQR.rows.length > 0) {
-        const qrRecord = existingQR.rows[0];
+    if (rsvpRes.rows.length > 0) {
+      // ✅ RSVP déjà soumis
+      if (qrDB.rows.length > 0) {
+        const qrRecord = qrDB.rows[0];
+        // Si fichier QR supprimé, régénérer
         if (!fs.existsSync(qrRecord.qr_image_path)) {
-          await QRCode.toFile(qrPath, redirectUrl, { width: 300 });
+          await QRCode.toFile(qrPath, qrUrl, { width: 300 });
           await pool.query(
             "UPDATE qr_codes SET qr_image_path = $1, qr_redirect_url = $2, created_at = NOW() WHERE id = $3",
-            [qrPath, redirectUrl, qrRecord.id]
+            [qrPath, qrUrl, qrRecord.id]
           );
-          console.log(`QR regeneré pour ${invitation_code}`);
         }
       } else {
-        // if QR record missing, recreate and insert
-        await QRCode.toFile(qrPath, redirectUrl, { width: 300 });
-        try {
-          await pool.query(
-            `INSERT INTO qr_codes (guest_id, qr_image_path, qr_redirect_url, created_at)
-            VALUES ($1, $2, $3, NOW())
-            ON CONFLICT (guest_id)
-            DO UPDATE SET qr_image_path = EXCLUDED.qr_image_path,
-                          qr_redirect_url = EXCLUDED.qr_redirect_url,
-                          created_at = NOW()`,
-            [guest.id, qrPath, redirectUrl]
-          );
-          console.log("QR saved to DB ✅", guest.id);
-        } catch (err) {
-          console.error("Failed to save QR to DB ❌", err);
-        }
-
+        // QR manquant, créer et insérer
+        await QRCode.toFile(qrPath, qrUrl, { width: 300 });
+        await pool.query(
+          `INSERT INTO qr_codes (guest_id, qr_image_path, qr_redirect_url, created_at)
+           VALUES ($1, $2, $3, NOW())`,
+          [guest.id, qrPath, qrUrl]
+        );
       }
 
       return res.json({
         success: true,
-        message: "RSVP déjà soumis. QR récupéré depuis la base.",
-        qr_download: `${BACKEND_URL}/download/${qrFileName}`,
+        message: "RSVP déjà soumis. QR récupéré.",
+        guest_name: guest.full_name,
+        table_number: guest.table_number,
+        qr_download: `${BACKEND_URL}/download/${qrFileName}`
       });
     }
 
-    // ✅ Case 2: New RSVP
-    await QRCode.toFile(qrPath, redirectUrl, { width: 300 });
+    // 4️⃣ Nouveau RSVP
+    // Générer QR
+    await QRCode.toFile(qrPath, qrUrl, { width: 300 });
 
-    // Insert / Update QR in qr_codes
+    // Insérer ou mettre à jour QR dans DB
     await pool.query(
       `INSERT INTO qr_codes (guest_id, qr_image_path, qr_redirect_url, created_at)
        VALUES ($1, $2, $3, NOW())
@@ -99,20 +89,22 @@ router.post("/", async (req, res) => {
        DO UPDATE SET qr_image_path = EXCLUDED.qr_image_path,
                      qr_redirect_url = EXCLUDED.qr_redirect_url,
                      created_at = NOW()`,
-      [guest.id, qrPath, redirectUrl]
+      [guest.id, qrPath, qrUrl]
     );
 
-    // Insert RSVP
+    // Insérer RSVP
     await pool.query(
-      `INSERT INTO rsvp_responses (guest_id, full_name, whatsapp_number, drink_choice, guestbook_message, responded_at)
-       VALUES ($1, $2, $3, $4, $5, NOW())`,
-      [guest.id, full_name, whatsapp_number, drink_choice, guestbook_message || null]
+      `INSERT INTO rsvp_responses (guest_id, whatsapp_number, drink_choice, guestbook_message, responded_at)
+       VALUES ($1, $2, $3, $4, NOW())`,
+      [guest.id, whatsapp_number, drink_choice || null, guestbook_message || null]
     );
 
-    res.json({
+    return res.json({
       success: true,
       message: "RSVP enregistré avec succès !",
-      qr_download: `${BACKEND_URL}/download/${qrFileName}`,
+      guest_name: guest.full_name,
+      table_number: guest.table_number,
+      qr_download: `${BACKEND_URL}/download/${qrFileName}`
     });
   } catch (err) {
     console.error("RSVP error:", err);

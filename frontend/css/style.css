@@ -12,7 +12,6 @@ html, body {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background: url('asset/invit10.jpg') no-repeat center center;
   background-size: cover;
   overflow: hidden;
 }
@@ -37,7 +36,6 @@ html, body {
     background-position: center center;
   }
 }
-
 
 /* Full-screen background image */
 #hero .hero-bg {
@@ -119,29 +117,264 @@ html, body {
 /* ===============================
    ⏳ SECTION 2: COUNTDOWN
 =============================== */
-#countdown {
-  background: linear-gradient(to bottom right, #fff8f8, #ffeaea);
-  color: #5a2e2e;
-  text-align: center;
-  padding: 60px 0;
-}
 
-#countdown .date {
-  font-size: 1.8rem;
-  color: #b66b6b;
-  letter-spacing: 1px;
-}
-
-#countdown #timer {
-  font-size: 1.4rem;
-  color: #a14f4f;
-}
-
-@media (min-width: 768px) {
-  #countdown .date { font-size: 2.2rem; }
-  #countdown #timer { font-size: 1.6rem; }
-}
-
+    .countdown-wrapper {
+      position: relative;
+      width: 100%;
+      padding: 1rem;
+      color: black;
+    }
+    
+    .pulse-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      border: 2px solid rgba(0, 178, 255, 0.3);
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    .pulse-ring:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+    
+    .pulse-ring:nth-child(3) {
+      animation-delay: 1s;
+    }
+    
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      perspective: 1000px;
+      margin-top: 1rem;
+    }
+    
+    .countdown-segment {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 1rem;
+      position: relative;
+    }
+    
+    .segment-value {
+      font-size: 5rem;
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: black;
+      position: relative;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 5px 15px rgba(10, 255, 133, 0.3);
+      transform-style: preserve-3d;
+    }
+    
+    .segment-value::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+    
+    .segment-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: gold;
+    }
+    
+    .ticker {
+      position: absolute;
+      bottom: 2rem;
+      left: 0;
+      right: 0;
+      background: rgba(0, 16, 52, 0.7);
+      padding: 1rem;
+      overflow: hidden;
+      border-top: 1px solid rgba(0, 178, 255, 0.3);
+      border-bottom: 1px solid rgba(0, 178, 255, 0.3);
+    }
+    
+    .ticker-content {
+      display: flex;
+      animation: ticker 20s linear infinite;
+      white-space: nowrap;
+    }
+    
+    .ticker-item {
+      margin-right: 50px;
+      font-weight: 700;
+      color: var(--light);
+    }
+    
+    .ticker-highlight {
+      color: var(--secondary);
+    }
+    
+    .beat-animation {
+      animation: beat 0.5s ease-out;
+    }
+    
+    .cta-button {
+      position: relative;
+      margin-top: 2rem;
+      padding: 0.8rem 2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: 30px;
+      color: var(--dark);
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(10, 255, 133, 0.3);
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(10, 255, 133, 0.5);
+    }
+    
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transform: translateX(-100%);
+    }
+    
+    .cta-button:hover::before {
+      animation: shimmer 1.5s infinite;
+    }
+    
+    /* Responsiveness */
+    @media (max-width: 600px) {
+      .tournament {
+        font-size: 1rem;
+      }
+      
+      .match {
+        font-size: 1.8rem;
+      }
+      
+      .segment-value {
+        font-size: 3.5rem;
+      }
+      
+      .countdown-segment {
+        margin: 0 0.7rem;
+      }
+      
+      .segment-label {
+        font-size: 0.7rem;
+      }
+      
+      .pulse-ring {
+        width: 300px;
+        height: 300px;
+      }
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+      0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.8;
+      }
+      70% {
+        opacity: 0.2;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0;
+      }
+    }
+    
+    @keyframes wave {
+      0%, 100% {
+        transform: scaleY(1);
+      }
+      50% {
+        transform: scaleY(1.1);
+      }
+    }
+    
+    @keyframes beat {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes ticker {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+    
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+    
+    .flare {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background-color: white;
+      border-radius: 50%;
+      box-shadow: 0 0 10px 2px rgba(0, 178, 255, 0.7);
+      animation: flare-animation 4s infinite;
+      opacity: 0;
+    }
+    
+    @keyframes flare-animation {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      20% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
 
 /* ===============================
    💌 SECTION 3: ROMANTIC MESSAGE
@@ -195,9 +428,10 @@ html, body {
 }
 
 .map-wrap iframe {
-  min-height: 260px;
+  min-height: 360px;
   border: 0;
 }
+
 
 @media (max-width: 767.98px) {
   .map-wrap iframe { height: 280px; }
@@ -207,8 +441,10 @@ html, body {
 /* ===============================
    🕒 SECTION 5: TIMELINE
 =============================== */
+
+/* ============ Desktop / default ============ */
 #timeline {
-  background: linear-gradient(to top right, #fff8f8, #fbeaea);
+  background: whitesmoke;
   position: relative;
   padding: 80px 0;
 }
@@ -217,120 +453,130 @@ html, body {
   position: relative;
   max-width: 900px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
+/* central line (visible on desktop) */
 .timeline::after {
   content: '';
   position: absolute;
-  width: 4px;
+  width: 3px;
   background-color: #d4a5a5;
   top: 0;
   bottom: 0;
   left: 50%;
-  margin-left: -2px;
+  transform: translateX(-50%);
 }
 
+/* items */
 .timeline-item {
-  padding: 10px 40px;
-  position: relative;
   width: 50%;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s ease;
-}
-
-.timeline-item.left { left: 0; }
-.timeline-item.right { left: 50%; }
-
-.timeline-content {
-  background-color: #fff;
-  padding: 20px 25px;
-  border-radius: 10px;
+  padding: 0 40px 40px;
   position: relative;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.timeline-content h5 {
-  color: #a14f4f;
-  font-weight: bold;
-}
-
-.timeline-content h4 {
   color: #5a2e2e;
-  margin-top: 5px;
+  box-sizing: border-box;
+  overflow: visible;
+  word-break: break-word;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(.2,.9,.2,1);
 }
 
-.timeline-content p {
-  color: #6e4e4e;
-  margin-top: 10px;
-  font-size: 0.95rem;
-}
+.timeline-item.left { text-align: right; left: 0; }
+.timeline-item.right { text-align: left; left: 50%; }
 
-/* Dots */
+/* connector dot */
 .timeline-item::before {
   content: '';
   position: absolute;
-  width: 20px;
-  height: 20px;
-  right: -10px;
+  top: 12px;
+  width: 16px;
+  height: 16px;
   background-color: #fff;
-  border: 4px solid #d4a5a5;
-  top: 15px;
+  border: 3px solid #d4a5a5;
   border-radius: 50%;
   z-index: 1;
 }
+.timeline-item.left::before { right: -9px; }
+.timeline-item.right::before { left: -9px; }
 
-.timeline-item.right::before { left: -10px; }
+.timeline-item h5 { color: #a14f4f; font-weight: bold; margin-bottom: 6px; }
+.timeline-item h4 { font-weight: 600; margin-bottom: 8px; }
+.timeline-item p { font-size: 0.95rem; color: #6e4e4e; margin: 0; }
 
-.timeline-item.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .timeline::after { left: 20px; }
-  .timeline-item { width: 100%; padding-left: 60px; padding-right: 25px; }
-  .timeline-item.right { left: 0; }
-  .timeline-item::before { left: 10px; }
-}
-
-/* Icon animation */
 .icon-wrap {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: #f7dede;
-  color: #8b3b3b;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
-  margin: 0 auto 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s ease;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #f7dede;
+  color: #8b3b3b;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+.icon-wrap:hover { transform: scale(1.1); background-color: #8b3b3b; color: #fff; }
+
+/* animation helper classes */
+.timeline-item.in-view { opacity: 1; transform: translateY(0); }
+
+/* initial slide offsets (desktop) */
+.slide-in-left { transform: translateX(-60px) translateY(12px); }
+.slide-in-right { transform: translateX(60px) translateY(12px); }
+
+/* when visible return to neutral */
+.timeline-item.in-view.slide-in-left,
+.timeline-item.in-view.slide-in-right {
+  transform: translateX(0) translateY(0);
+  transition: transform 0.7s cubic-bezier(.2,.9,.2,1), opacity 0.6s ease;
 }
 
-.icon-wrap:hover {
-  transform: scale(1.15);
-  background: #8b3b3b;
-  color: #fff;
+/* ============ Mobile tweaks ============ */
+@media (max-width: 768px) {
+  /* hide central line entirely on mobile */
+  .timeline::after { display: none; }
+
+  /* make each item full-width and centered */
+  .timeline-item {
+    width: 100%;
+    padding: 18px 18px 30px;
+    text-align: center;
+  }
+
+  /* center dot under each item */
+  .timeline-item::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* ensure left/right classes don't change text layout */
+  .timeline-item.left,
+  .timeline-item.right { left: 0; text-align: center; }
+
+  /* Keep slide offsets but smaller for mobile (so items remain visually centered) */
+  .slide-in-left { transform: translateX(-40px) translateY(12px); }
+  .slide-in-right { transform: translateX(40px) translateY(12px); }
+
+  /* visible state resets to neutral */
+  .timeline-item.in-view.slide-in-left,
+  .timeline-item.in-view.slide-in-right {
+    transform: translateX(0) translateY(0);
+  }
+
+  /* prevent text clipping on very small screens */
+  .timeline { padding-left: 8px; padding-right: 8px; }
+  .timeline-item p { word-break: break-word; font-size: 0.98rem; line-height: 1.4; }
 }
 
-.timeline-item.show .icon-wrap { animation: pulse 1.5s ease-out; }
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(139, 59, 59, 0.6); }
-  70% { box-shadow: 0 0 0 15px rgba(139, 59, 59, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(139, 59, 59, 0); }
-}
 
 
 /* ===============================
-   👗 SECTION 6: DRESS CODE
+  SECTION 6: DRESS CODE
 =============================== */
 #dresscode {
-  background: linear-gradient(to bottom right, #fff8f8, #fef2f2);
+   background: whitesmoke;
   color: #5a2e2e;
   padding: 60px 0;
   animation: fadeUp 1.5s ease;
@@ -376,51 +622,49 @@ html, body {
 }
 
 
-/* ===============================
-   💞 SECTION 8: COUPLE PHOTO
-=============================== */
-#couple {
-  background: linear-gradient(to top right, #fff8f8, #fdeaea);
+/* =====================================
+   💞 SECTION 8: COUPLE PHOTO & gifts
+======================================== */
+
+#couple-gift {
+  background: linear-gradient(to bottom right, #fff8f8, #fbeaea);
+  position: relative;
   overflow: hidden;
-  padding: 80px 0;
 }
 
-.couple-photo-wrapper {
-  max-width: 600px;
-  margin: 0 auto;
-  border-radius: 30px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  animation: fadeUp 1.5s ease;
+#couple-gift .wave-top svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .couple-photo {
+  max-height: 420px;
   width: 100%;
-  transform: scale(1);
-  transition: transform 0.8s ease;
+  object-fit: cover;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
 }
 
-.couple-photo:hover { transform: scale(1.05); }
-
-
-/* ===============================
-   🎁 SECTION 9: GIFTS
-=============================== */
-#gifts {
-  background: linear-gradient(to bottom right, #fffdfd, #fff5f5);
-  padding: 60px 20px;
-  animation: fadeUp 1.5s ease;
+.couple-photo:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.gift-box {
-  background: #fff;
-  border: 1px solid #f2dede;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
+/* Responsive layout */
+@media (max-width: 768px) {
+  #couple-gift .row {
+    flex-direction: column;
+    text-align: center;
+  }
 
-.gift-box:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  #couple-gift .col-md-6 {
+    width: 100%;
+  }
+
+  ul.list-unstyled {
+    text-align: center;
+    padding-left: 0;
+  }
 }
 
 
@@ -428,7 +672,7 @@ html, body {
    💖 SECTION 10: FOOTER
 =============================== */
 #footer {
-  background: linear-gradient(to top right, #fef2f2, #fff8f8);
+   background: linear-gradient(to bottom right, #fff8f8, #fbeaea);
   color: #8b3b3b;
   text-align: center;
   padding: 40px 20px;

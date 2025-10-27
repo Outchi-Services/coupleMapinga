@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("RSVP POST response data:", data);
 
         if (data.success) {
-          alert(`✅ Merci ${data.guest_name} !\nVotre RSVP a été enregistré.\nTéléchargez votre QR ici : ${data.qr_download || "N/A"}`);
+          alert(`✅ Merci ${data.guest_name} !\nVotre RSVP a été enregistré.`); //\nTéléchargez votre QR ici : ${data.qr_download || "N/A"}
           rsvpForm.reset();
           const modal = bootstrap.Modal.getInstance(document.getElementById("rsvpModal"));
           if(modal) modal.hide();

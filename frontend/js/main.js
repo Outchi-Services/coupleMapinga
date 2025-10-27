@@ -124,11 +124,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     // Update every second
     const countdown = setInterval(updateCountdown, 1000);
-    
-    // Make ticker content dynamic
-    const tickerContent = document.querySelector('.ticker-content');
-    const originalWidth = tickerContent.offsetWidth;
-    tickerContent.style.animationDuration = `${originalWidth / 50}s`;
 
   /* =============================== Load personalized guest info =============================== */
   const urlParams = new URLSearchParams(window.location.search);

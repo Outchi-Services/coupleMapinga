@@ -125,31 +125,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Update every second
     const countdown = setInterval(updateCountdown, 1000);
     
-    // Reminder button functionality
-    reminderBtn.addEventListener('click', function() {
-      this.textContent = "Reminder Set!";
-      this.style.background = "linear-gradient(90deg, #0aff85, #00b2ff)";
-      setTimeout(() => {
-        this.textContent = "Set a Reminder";
-        this.style.background = "linear-gradient(90deg, var(--primary), var(--secondary))";
-      }, 3000);
-      
-      // Trigger more pulse rings on click
-      const container = document.querySelector('.container');
-      for (let i = 0; i < 3; i++) {
-        const extraPulse = document.createElement('div');
-        extraPulse.className = 'pulse-ring';
-        extraPulse.style.animationDelay = `${i * 0.2}s`;
-        extraPulse.style.animationDuration = '1s';
-        container.appendChild(extraPulse);
-        
-        // Remove the extra pulse after animation
-        setTimeout(() => {
-          extraPulse.remove();
-        }, 1000);
-      }
-    });
-    
     // Make ticker content dynamic
     const tickerContent = document.querySelector('.ticker-content');
     const originalWidth = tickerContent.offsetWidth;

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const observerOptions = {
     root: null, // viewport
-    threshold: 0.3, // 30% of element visible
+    threshold: 0.2, // 20% of element visible
   };
 
   const observer = new IntersectionObserver((entries, observer) => {

@@ -25,80 +25,103 @@
   <img src="asset/invit10.jpg" alt="Monica & Christ" class="hero-bg">
   <div class="overlay"></div>
   <div class="hero-text">
-    <h1 class="fade-slide-text niconne-regular">Monica &amp; Christ se marient !</h1>
-    <p class="fade-slide-sub">Vous êtes invités !</p>
+    <h1 class="fade-slide-text">Monica &amp; Christ se marient!</h1>
   </div>
  </section>
   
-  <!-- Section 2: Date & Countdown -->
-<section id="countdown-section" class="py-5 text-center">
-  <div class="container">
+  <!-- Section 2: Date & Countdown (image in HTML) -->
+<section id="countdown-section" class="countdown-wrapper text-center text-light py-5">
+  <!-- Image placed in the markup so it can be controlled/responsive -->
+  <div class="countdown-media">
+    <img src="asset/flower-4931288_640.webp" alt="Wedding background" class="countdown-img" loading="lazy" />
+    <div class="overlay"></div>
+  </div>
+  <div class="container position-relative countdown-content">
     <!-- Wedding Date -->
-    <h2 class="fw-bold mb-4 display-6" style="letter-spacing: 1px;">22 Novembre 2025</h2>
-
+    <h2 class="fw-bold mb-4 display-6 niconne-regular floating" style="letter-spacing:1px;">Save the date<br/>22.11.2025</h2>
     <!-- Countdown -->
-    <div class="countdown d-flex justify-content-center flex-wrap gap-4 mb-4">
+    <div class="countdown d-flex justify-content-center flex-wrap gap-4 mb-4" role="group" aria-label="Countdown to wedding">
       <div class="countdown-segment">
         <div class="segment-value fs-1 fw-bold" id="days">00</div>
-        <div class="segment-label text-muted">Jours</div>
+        <div class="segment-label ">Jours</div>
       </div>
       <div class="countdown-segment">
         <div class="segment-value fs-1 fw-bold" id="hours">00</div>
-        <div class="segment-label text-muted">Heures</div>
+        <div class="segment-label">Heures</div>
       </div>
       <div class="countdown-segment">
         <div class="segment-value fs-1 fw-bold" id="minutes">00</div>
-        <div class="segment-label text-muted">Minutes</div>
+        <div class="segment-label">Minutes</div>
       </div>
       <div class="countdown-segment">
         <div class="segment-value fs-1 fw-bold" id="seconds">00</div>
-        <div class="segment-label text-muted">Secondes</div>
+        <div class="segment-label">Secondes</div>
       </div>
     </div>
-
-    <!-- Confirmation Button -->
-    <button type="button" class="btn btn-primary btn-lg px-5" data-bs-toggle="modal" data-bs-target="#rsvpModal">
+    <!-- optional CTA -->
+     <!-- Confirmation Button -->
+    <button type="button" class="btn btn-primary btn-lg px-5 cta-button" data-bs-toggle="modal" data-bs-target="#rsvpModal">
       Confirmer ma présence 💌
     </button>
   </div>
 </section>
 
-<!-- Section 3: Invitation Message -->
+<!--Section 3: Invitation + Location -->
 <section id="message-section" class="py-5 text-center">
   <div class="container">
-    <h2 class="fw-semibold mb-3">Un conte... une histoire prend vie :</h2>
-    <p class="lead romantic-text mb-4" id="personalMessage">
-      Votre invitation personnalisée s'affichera ici.
-    </p>
-    <p class="signature mb-0">
-      Avec tout notre amour,<br><strong>Monica &amp; Christ</strong>
-    </p>
-  </div>
-</section>
 
-
-<!-- Section 4: Location -->
-<section id="Lieu" class="py-5 text-center">
-  <div class="container">
-    <!-- Elegant Section Header -->
-    <div class="mb-5">
-      <p class="text-muted fs-5">Découvrez le lieu magique où nous célébrerons notre union</p>
+    <!-- Romantic Introduction -->
+    <h1 class="fw-semibold mb-3 niconne-regular slide-left-on-scroll">
+      Un conte d’amour s’écrit sous les étoiles…
+    </h1>
+    <p class="lead fw-semibold romantic-text slide-right-on-scroll mb-5">
+      Deux âmes, guidées par le destin, s’unissent pour célébrer leur promesse d’amour éternel.  
+      À travers cette invitation, nous vous convions à partager la douceur de ce jour unique,  
+      où chaque sourire, chaque regard, sera un éclat de bonheur.
+    </p>
+      <svg width="0" height="0" aria-hidden="true">
+        <filter id="tear">
+          <feTurbulence baseFrequency=".0317" numOctaves="3" />
+          <feDisplacementMap in="SourceGraphic" scale="24" xChannelSelector="R" />
+          <feOffset dx="-6" dy="-6" />
+          <feComposite in="SourceGraphic" operator="atop" />
+        </filter>
+     </svg>
+    <!-- 💌 Personalized Invitation Message -->
+    <div class="message-card p-4 rounded-4 shadow-sm mb-5">
+      <p class="romantic-text fw-semibold mb-4" id="personalMessage">
+        Votre invitation personnalisée s'affichera ici.
+      </p>
+      <p class="signature mb-0">
+        <strong>Monica &amp; Christ</strong>
+      </p>
     </div>
 
+    <!-- Location – seamlessly continuing the story -->
+    <div class="mb-5 fade-in-on-scroll>
+      <h1 class="fw-semibold mb-3 niconne-regular">Et le lieu de notre bonheur...</h1>
+      <p class=" fs-5">
+        Parce que chaque histoire d’amour mérite un décor magique,  
+        nous avons choisi un endroit où le temps s’arrête,  
+        pour que nos cœurs battent à l’unisson au milieu des palmiers et de la lumière.
+      </p>
+    </div>
     <div class="row g-4 align-items-center">
       <!-- Left: Location details -->
-      <div class="col-12 col-md-6 text-md-start text-center>
+      <div class="col-12 col-md-6 text-md-start text-center">
         <p class="fs-5 mb-1"><strong>La Palmeraie</strong></p>
         <p class="text-muted mb-1">
           <strong>Adresse :</strong><br>
-          Avenue Kabalo n°177,Kinshasa - Lingwala, RDCongo.<br/>Réf : Rond-point Huilerie
+          Avenue Kabalo n°177, Kinshasa - Lingwala, RDCongo.<br>
+          Réf : Rond-point Huilerie
         </p>
       </div>
 
       <!-- Right: Embedded Map -->
       <div class="col-12 col-md-6">
         <div class="map-wrap rounded-4 overflow-hidden shadow-sm">
-          <iframe title="maps"
+          <iframe
+            title="maps"
             src="https://www.google.com/maps?q=La+Palmeraie+Kinshasa+Avenue+Kabalo+177&output=embed"
             width="100%"
             height="360"
@@ -111,90 +134,97 @@
   </div>
 </section>
 
- <!-- Section 5: Programme du Jour -->
-<section id="timeline" class="py-5">
-  <div class="container text-center">
-    <h2 class="fw-bold mb-5">Programme du Jour</h2>
-    <div class="timeline">
-      <!-- Timeline items -->
-      <div class="timeline-item left">
-        <div class="icon-wrap"><i class="bi bi-heart-fill"></i></div>
-        <h5>19h30</h5>
-        <h4>Entrée des Mariés 💍</h4>
-        <p>Un moment magique où nos cœurs s’unissent sous les applaudissements de nos proches.</p>
+ <!-- Section: Programme du Jour + Dress Code -->
+<section id="timeline" class="py-5 text-center">
+  <div class="container">
+    <h2 class="fw-bold mb-5 slide-right-on-scroll">Programme &amp; Élégance du Soir</h2>
+
+    <!-- Programme du Jour -->
+    <div class="timeline-progress slide-left-on-scroll">
+      <div class="timeline-step">
+        <div class="dot"></div>
+        <div class="content">
+          <h5>19h30</h5>
+          <h4>Entrée des Mariés 💍</h4>
+          <p>L’instant magique où nos cœurs s’unissent pour toujours.</p>
+        </div>
       </div>
-      <div class="timeline-item right">
-        <div class="icon-wrap"><i class="bi bi-gift-fill"></i></div>
-        <h5>21h00</h5>
-        <h4>Repas & Cadeaux 🍽️🎁</h4>
-        <p>Partageons un délicieux dîner accompagné de moments de gratitude et d’échanges de présents.</p>
+
+      <div class="timeline-step">
+        <div class="dot"></div>
+        <div class="content">
+          <h5>21h00</h5>
+          <h4>Dîner &amp; Joie 🍷</h4>
+          <p>Saveurs, rires et doux instants partagés à la lumière des chandelles.</p>
+        </div>
       </div>
-      <div class="timeline-item left">
-        <div class="icon-wrap"><i class="bi bi-music-note-beamed"></i></div>
-        <h5>23h00</h5>
-        <h4>Danse & Festivités 💃</h4>
-        <p>Place à la musique et à la joie ! Célébrons ensemble jusqu’à l’aube.</p>
+
+      <div class="timeline-step">
+        <div class="dot"></div>
+        <div class="content">
+          <h5>23h00</h5>
+          <h4>Danse &amp; Fête 💃</h4>
+          <p>La nuit nous appartient — que l’amour rythme chaque pas.</p>
+        </div>
       </div>
-      <div class="timeline-item right">
-        <div class="icon-wrap"><i class="bi bi-sunrise-fill"></i></div>
-        <h5>05h00</h5>
-        <h4>Clôture de la Soirée ☀️</h4>
-        <p>Un dernier toast à l’amour et au bonheur partagé avant de nous dire à bientôt !</p>
+
+      <div class="timeline-step">
+        <div class="dot"></div>
+        <div class="content">
+          <h5>05h00</h5>
+          <h4>Clôture ☀️</h4>
+          <p>Un dernier toast au bonheur, aux étoiles et à l’éternité.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-
-  <!-- Section 6: Dress Code -->
-  <section id="dresscode" class="py-5">
-    <div class="container text-center">
-      <h2 class="fw-bold mb-4">Code Vestimentaire</h2>
-      <p class="lead text-muted mb-5">
-        Pour honorer ce moment unique, nous vous invitons à adopter un style chic et harmonieux 
-        dans les tons doux et romantiques de notre union.  
-        <br><strong>Thème :</strong> Élégance &amp; Douceur du Soir ✨
+    <!-- Dress Code -->
+    <div id="dresscode" class="py-5 mt-5">
+      <h3 class="fw-semibold mb-3">Code Vestimentaire</h3>
+      <p class="lead text-muted mb-4">
+        Élégance et douceur du soir.<br>
+        <strong>Thème :</strong> Romantisme Chic ✨
       </p>
-      <div class="palette d-flex flex-wrap justify-content-center gap-3 mb-4">
+      <div class="palette floating d-flex flex-wrap justify-content-center gap-3 mb-4">
         <div class="color-circle" style="background:#f8dede;" title="Rose poudré"></div>
         <div class="color-circle" style="background:#8b3b3b;" title="Bordeaux doux"></div>
         <div class="color-circle" style="background:#fff5e1;" title="Champagne clair"></div>
         <div class="color-circle" style="background:#d4a15a;" title="Doré doux"></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Section: Couple & Gift Preferences -->
-<section id="couple-gift" class="py-5 position-relative bg-light">
-
+  <!--Section: Couple & Cadeaux -->
+<section id="couple-gift" class="py-5 position-relative">
   <div class="container py-5">
-    <div class="row align-items-center gy-5">
-      <!-- Left: Couple Photo -->
-      <div class="col-md-6 text-center">
-        <p class="lead text-muted mb-4">
-          Deux âmes, une histoire, un amour sans fin...
+    <div class="row align-items-center gy-5 flex-column-reverse flex-md-row">
+      
+      <!--Left: Text -->
+      <div class="col-md-6 text-center text-md-start">
+        <h3 class="fw-semibold mb-3 mt-4">Cadeaux de Coeur</h3>
+        <p class="text-muted mb-4">
+          Votre présence est notre plus précieux trésor.  
+          Mais si vous désirez accompagner notre nouvelle aventure :
         </p>
-        <img src="asset/invit1010.jpg" alt="Monica & Christ"
-             class="img-fluid rounded-4 shadow-sm couple-photo" />
+        <ul class="list-unstyled gift-list mb-3">
+          <li>* Une petite attention pour notre nid d’amour</li>
+          <li>* Une contribution pour notre voyage de noces</li>
+          <li>* Un souvenir symbolique de votre tendresse</li>
+        </ul>
+        <p class="fst-italic text-muted">
+          Merci de faire partie de notre conte d’amour!
+        </p>
       </div>
 
-      <!-- Right: Gift Preferences -->
-      <div class="col-md-6 text-center text-md-start">
-        <h2 class="fw-bold mb-3">Nos Cadeaux 🎁</h2>
-        <p class="text-muted mb-4">
-          Votre présence est le plus beau des cadeaux.<br>
-          Mais si vous souhaitez marquer cette journée :
-        </p>
-
-        <ul class="list-unstyled">
-          <li>💌 Une petite enveloppe pour notre nouvelle vie</li>
-          <li>🏠 Une aide pour notre foyer ou voyage de noces</li>
-          <li>💐 Un souvenir de votre affection</li>
-        </ul>
-
-        <p class="fst-italic text-muted mt-3">
-          Merci de faire partie de notre bonheur 💖
-        </p>
+      <!-- Right: Photo -->
+      <div class="col-md-6 text-center">
+        <div class="photo-frame mx-auto">
+          <div class="photo-overlay">
+          </div>
+          <img src="asset/invit1010.jpg" alt="Monica & Christ"
+               class="img-fluid rounded-4 shadow-lg couple-photo" />
+        </div>
       </div>
     </div>
   </div>

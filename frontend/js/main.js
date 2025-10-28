@@ -1,37 +1,27 @@
 document.addEventListener("DOMContentLoaded", async () => {
   console.log("Wedding site loaded — all sections initialized.");
 
-  /* =============================== timeline tree =============================== */
-  (function () {
-    const items = document.querySelectorAll('.timeline-item');
+    /* =============================== Scroll Animations =============================== */
+  const scrollElements = document.querySelectorAll(
+    '.animate-on-scroll, .fade-in-on-scroll, .slide-left-on-scroll, .slide-right-on-scroll, .fade-up-on-scroll, .zoom-in-on-scroll, .floating-on-scroll'
+  );
 
-    // Assign slide direction class initially (alternating).
-    items.forEach((item, idx) => {
-      // If you prefer explicit data-side attribute to decide, we check that first.
-      const side = item.dataset.side || (idx % 2 === 0 ? 'left' : 'right');
-      if (side === 'left') item.classList.add('slide-in-left');
-      else item.classList.add('slide-in-right');
+  const observerOptions = {
+    root: null, // viewport
+    threshold: 0.3, // 30% of element visible
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // Animate only once
+      }
     });
+  }, observerOptions);
 
-    // IntersectionObserver options
-    const io = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          // add in-view to trigger animation; keep slide class so direction remains
-          el.classList.add('in-view');
-          // stop observing this element after it's animated
-          obs.unobserve(el);
-        }
-      });
-    }, {
-      root: null,
-      rootMargin: '0px 0px -10% 0px', // trigger slightly before bottom
-      threshold: 0.18
-    });
+  scrollElements.forEach((el) => observer.observe(el));
 
-    items.forEach(i => io.observe(i));
-  })();
 
   /* =============================== Countdown =============================== */
  

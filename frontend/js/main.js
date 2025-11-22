@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   /* =============================== Countdown =============================== */
  
-    // Set the event date - November 22, 2025 at 20:00 UTC
-    const eventDate = new Date('November 22, 2025 19:00:00 UTC').getTime();
+    // Set the event date - December 22, 2025 at 20:00 UTC
+    const eventDate = new Date('December 22, 2025 19:00:00 UTC').getTime();
     
     // Elements
     const daysEl = document.getElementById('days');
